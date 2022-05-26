@@ -86,7 +86,7 @@ $row=$result->fetch(PDO::FETCH_ASSOC);
                     </div>
                   </div>
                   <div class="card mt-3">
-                    <!--  -->
+                    
                   </div>
                 </div>
                 <div class="col-md-8">
@@ -100,15 +100,7 @@ $row=$result->fetch(PDO::FETCH_ASSOC);
                        <?php  echo $row['username'];?>
                         </div>
                       </div>
-                      <hr>
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <h6 class="mb-0">Email</h6>
-                        </div>
-                        <div class="col-sm-9 text-info">
-                        <?php echo $row['email'];?>
-                        </div>
-                      </div>
+                     
                       <hr>
                       <div class="row">
                         <div class="col-sm-3">
@@ -139,54 +131,14 @@ $row=$result->fetch(PDO::FETCH_ASSOC);
                       <hr>
                       <div class="row">
                         <div class="col-sm-12">
-                          <a class="btn btn-info "  href="updateuser.php">Edit</a>
-                          <a class="btn btn-danger "  href="?logout=true">Log out </a>
+                          <a class="btn btn-primary "  href="updateuser.php">Edit</a>
+                          <a class="btn btn-danger "  href="?logout=true">Logout </a>
                         </div>
                       </div>
                     </div>
                   </div>
                   </table>
-                  <h1> Your Order : </h1>
-<table class="table">                  
-  
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Total of the oeder </th>
-      <th scope="col">Date of order</th>
-      <th scope="col">Order detaile</th>
-    </tr>
-  </thead>
-  <?php 
-   
-  $q1 = "
-  SELECT * FROM `orders` 
-  ";
-  $data = $pdo->query($q1);
-  
-  foreach($data as $v){
-      if($v['user_id'] == $user_id ){
-?>
-<tbody>
-    <tr>
-      <th scope="row"><?php echo $v['order_id']; ?></th>
-      <td><?php echo $v['invoice']; ?></td>
-      <td><?php echo $v['order_date']; ?></td>
-      <td><?php echo '
-      <a class="btn btn-primary" href="orderdetail.php?order_id='.$v['order_id'].'">Show detaile </a>
-      
-      '; 
-      ?>
-      </td>
-    </tr>
-  </tbody>
-<?php
-      } 
-  }
-  ?>
-  
 
-</table>
 
 
 
