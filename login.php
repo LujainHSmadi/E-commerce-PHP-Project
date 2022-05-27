@@ -42,9 +42,23 @@ if (isset($_POST['login'])) {
 	<script src="js/script_login.js"></script>
 </head>
 
+<style>
+ body{
+        background:url(images/aas.jpg);
+        background-size: cover;
+         filter:grayscale(60%);
+overflow:hidden;
+
+    }
+
+
+</style>
+}
+
 <body>
-<!-- Header -->
-<?php include 'include/header.php' ?> 
+    <!-- Header -->
+    <?php include 'include/header.php'?>
+
 
 <!-- Cart -->
 <?php include 'include/smal_cart.php'; ?> 
