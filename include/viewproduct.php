@@ -27,7 +27,7 @@ echo '
 								</a>
 
 								<span class="stext-105 cl3">
-									$'.$value['product_price'].'
+									'.$value['product_price']."  JOD" .'
 								</span>
 							</div>
 

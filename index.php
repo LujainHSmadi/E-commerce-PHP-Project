@@ -220,48 +220,6 @@ ViewPro();
 					}
 				
 	?>
-  <section class="bg0 p-t-75 p-b-120">
-        <div class="container">
-            <div class="row p-b-148">
-                <div class="col-md-7 col-lg-8">
-                    <div class="p-t-7 p-r-85 p-r-15-lg p-r-0-md">
-                        <h3 class="ltext-105  p-b-16">
-                           About Us
-                        </h3>
-                        <br>
-                        <br>
-
-                        <p class="stext-113 cl6 p-b-26">
-                            Our idea was that everyone suffers until he finds his kitchen or electrical appliances for his kitchen. We were among the people who suffer from this problem, so we thought about this project and came up with us that we combine electrical tools and kitchen
-                            tools all in one project, in addition to designs for kitchens in general and the colors for these designs. We hope you like it and keep using it for long periods of time.
-                        </p>
-
-                        <p class="stext-113 cl6 p-b-26">
-
-                        </p>
-                        <br>
-
-                        <p class="stext-113 cl6 p-b-26">
-                            Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us on +962-777-765-585
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-11 col-md-5 col-lg-4 m-lr-auto">
-                    <div class="how-bor1 ">
-                        <div class="hov-img0">
-                            <img src="images/aaaa.jpg" alt="IMG">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
-        </div>
-        </div>
-    </section>
-
 
 </div>
 	</div>

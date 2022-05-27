@@ -1,47 +1,73 @@
 <?php
+session_start();
 include 'include/detailproduct.php';
 include 'include/db.php';
+include 'include/header.php';
+?>
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-if (isset($_GET['actiona'])) {
-    include 'include/db.php';
-    $pro_id = $_GET['pro_id'];
-    $q = "
-					SELECT * FROM `product` WHERE product_id = $pro_id
-					";
-    $result = $GLOBALS['db']->query($q);
-    $row = $result->fetch(PDO::FETCH_ASSOC);
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/login.css" >
+    <?php include 'include/style.php'?>
+</head>
+  <body>
+<!-- Header -->
 
-    if (isset($_GET['pro_id'])) {
 
-        $pro_id = $row['product_id'];
-        $quantity = 1;
-        $op = true;
-        $pro_name = $row['product_name'];
-        $total = $row['product_price'];
-        $pro_img = $row['product_img'];
-        $pro_price = $row['product_price'];
+<h1 style="margin-top:20%;"> Your Order : </h1>
+<table class="table">
 
-        $product = array
-            (
-            "cart_id" => "$pro_id",
-            "total" => "$total",
-            "quantity" => "$quantity",
-            "pro_id" => "$pro_id",
-            "pro_name" => "$pro_name",
-            "pro_price" => "$pro_price",
-            "pro_img" => "$pro_img",
-        );
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Total of the oeder </th>
+      <th scope="col">Date of order</th>
+      <th scope="col">Order detaile</th>
+    </tr>
+  </thead>
+  <?php
+$user_id = $_SESSION['loggeduser'];
 
-        foreach ($_SESSION['Cart'] as $key => $value) {
-            if ($value["pro_id"] == $pro_id) {
-                $_SESSION['Cart'][$key]['quantity'] = $value["quantity"] += 1;
-                $_SESSION['Cart'][$key]['total'] = $value['pro_price'] *= $value["quantity"];
-                $op = false;
-            }
-        }
+$q1 = "
+  SELECT * FROM `orders` ;
+  ";
+$statement = $db->prepare($q1);
+$statement->execute();
+$data = $statement->fetchAll();
 
-        if ($op) {
-            array_push($_SESSION['Cart'], $product);
-        }
-    }
+foreach ($data as $i => $v) {
+
+    if ($v['user_id'] == $user_id) {
+        ?>
+<tbody>
+    <tr>
+      <th scope="row"><?php echo $v['order_id']; ?></th>
+      <td><?php echo $v[1]; ?></td>
+      <td><?php echo $v[2]; ?></td>
+      <td><?php echo '
+      <a class="btn btn-primary" href="orderdetail.php?order_id=' . $v[0] . '">Show detaile </a>
+
+      ';
+        ?>
+      </td>
+    </tr>
+  </tbody>
+<?php
 }
+}
+?>
+
+
+</table>
+<?php
+
+include 'include/js.php';
+include 'include/footer.php';
+?>

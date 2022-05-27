@@ -86,7 +86,7 @@ $row=$result->fetch(PDO::FETCH_ASSOC);
                     </div>
                   </div>
                   <div class="card mt-3">
-                    
+                    <a class="btn btn-primary "  href="orderProfile.php">View Order</a>
                   </div>
                 </div>
                 <div class="col-md-8">
