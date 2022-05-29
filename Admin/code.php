@@ -4,7 +4,7 @@ include_once "include/connect.php";
 $state = false;
 
 if (isset($_POST["registeration"])) {
-    echo "hello";
+
     $username = $_POST['username'];
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -14,6 +14,7 @@ if (isset($_POST["registeration"])) {
         $query = "INSERT INTO `admin`(`admin_id`, `admin_name`,  `admin_email`, `admin_password`, `admin_date`)
     VALUES (NULL,:username,:email,:password, NOW()) ";
 
+        $password = password_hash($password, PASSWORD_DEFAULT);
         $statement = $conn->prepare($query);
         $statement->bindValue(':username', $username);
         $statement->bindValue(':email', $email);
@@ -22,7 +23,7 @@ if (isset($_POST["registeration"])) {
 
         $state = true;
         if ($state) {
-            echo "MATCH";
+
             $_SESSION['success'] = "Admin Profile has been added";
             header("Location: register.php");
 
@@ -34,7 +35,7 @@ if (isset($_POST["registeration"])) {
 
     } else {
         $_SESSION['status'] = "PASSWORD and CONFIRM PASSWORD DOES NOT MATCH";
-        // header("Location: register.php");
+         header("Location: register.php");
 
     }
 
@@ -55,6 +56,7 @@ if (isset($_POST['edit_username'])) {
     `admin_password`= :password,
     `admin_date`= NOW()
      WHERE `admin_id` = :id";
+    $password = password_hash($password, PASSWORD_DEFAULT);
 
     $statement = $conn->prepare($query);
     $statement->bindValue(':name', $username);
@@ -100,9 +102,7 @@ if (isset($_POST['login'])) {
             header("Location:login.php");
         }
 
-    } else {
-
-    }
+    } 
 }
 
 //category
@@ -138,7 +138,7 @@ if (isset($_POST['add_category'])) {
             }
 
             $query = "INSERT INTO `category` (`category_id`, `category_name`, `category_img`, `category_des`)
-    VALUES (NULL, :name, :image, :desc)";
+            VALUES (NULL, :name, :image, :desc)";
 
             $statment = $conn->prepare($query);
             $statment->bindValue(':name', $cat_name);
@@ -200,7 +200,7 @@ if (isset($_POST['edit_category'])) {
     $errors = [];
 
     $name = $category['category_name'];
-// $image = $category['category_img'];
+    // $image = $category['category_img'];
     // $desc=$category['category_des'];
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -588,6 +588,7 @@ if (isset($_POST["user_reg"])) {
 
         $query = "INSERT INTO `user`(`user_id`, `password`, `email`, `address`, `city`, `phone`, `username`)
         VALUES (NULL,:password,:email,:address,:city,:phone,:username)";
+        $password = password_hash($password, PASSWORD_DEFAULT);
 
         $statment = $conn->prepare($query);
         $statment->bindValue(':password', $password);
